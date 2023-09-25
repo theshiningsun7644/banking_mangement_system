@@ -7,26 +7,26 @@ using namespace std;
 class temp{
     int accNo;
 	char name[25];
-	char Fname[25];
+	char F_name[25];
 	char cnic[25];
 	char P_no[25];
 	char email[25];
 	float amount;
-	int newAmount;
+	int new_Amount;
     fstream file,file1;
 
     public:
 	int search;
 
-    void createAccount(void);   // declaration of create account function
-    void depositAmount(void);   // declaration of depositAmount function
-    void withdrawAmount(void);  // declaration of withdrawAmount function
-    void checkInfo(void);       // declaration of checkInfo function
+    void create_Account(void);   // declaration of create account function
+    void deposit_Amount(void);   // declaration of depositAmount function
+    void withdraw_Amount(void);  // declaration of withdrawAmount function
+    void check_Info(void);       // declaration of checkInfo function
 };
 
 
 // Defination of create account function
-void temp :: createAccount(){
+void temp :: create_Account(){
 
     srand(time(0));
 	accNo=rand()*rand()+rand()*rand();
@@ -35,7 +35,7 @@ void temp :: createAccount(){
 	cin>>name;
 
 	cout<<"Enter Your Father name :: ";
-	cin>>Fname;
+	cin>>F_name;
 
 	cout<<"Enter Your cnic :: ";
 	cin>>cnic;
@@ -52,74 +52,74 @@ void temp :: createAccount(){
 	cout<<endl<<accNo<<" This is your account number... \n";
 	cout<<"Please save it \n\n";
 
-	file.open("C:/Placement_projects/bank-management-system/data.txt",ios::out|ios::app);
-	file<<accNo<<"\t"<<name<<"\t"<<Fname<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
+	file.open("data.txt",ios::out|ios::app);
+	file<<accNo<<"\t"<<name<<"\t"<<F_name<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
 	file.close();
 }
 // Defination of depositAmount function
-void temp :: depositAmount(){
+void temp :: deposit_Amount(){
 
 	cout<<"Enter amount to deposit :: ";
-	cin>>newAmount;
+	cin>>new_Amount;
 
-	file.open("C:/Placement_projects/bank-management-system/data.txt",ios::in);
-	file1.open("C:/Placement_projects/bank-management-system/data1.txt",ios::out|ios::app);
-	file>>accNo>>name>>Fname>>cnic>>P_no>>email>>amount;
+	file.open("data.txt",ios::in);
+	file1.open("newdata.txt",ios::out|ios::app);
+	file>>accNo>>name>>F_name>>cnic>>P_no>>email>>amount;
 
 	while(!file.eof()) {
 		if(accNo==search){
 			cout<<"\ncurrent amount :: "<<amount;
-			amount=amount + newAmount;
+			amount=amount + new_Amount;
 			cout<<"\nupdated amount :: "<<amount<<endl;
-			file1<<accNo<<"\t"<<name<<"\t"<<Fname<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
+			file1<<accNo<<"\t"<<name<<"\t"<<F_name<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
 		}else{
-			file1<<accNo<<"\t"<<name<<"\t"<<Fname<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
+			file1<<accNo<<"\t"<<name<<"\t"<<F_name<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
 		}
-		file>>accNo>>name>>Fname>>cnic>>P_no>>email>>amount;
+		file>>accNo>>name>>F_name>>cnic>>P_no>>email>>amount;
 	}
 
 	file.close();
 	file1.close();
-	remove("C:/Placement_projects/bank-management-system/data.txt");
-	rename("C:/Placement_projects/bank-management-system/data1.txt","C:/Placement_projects/bank-management-system/data.txt");
+	remove("data.txt");
+	rename("newdata.txt","data.txt");
 }
 // Defination of withdrawAmount function
-void temp :: withdrawAmount(){
+void temp :: withdraw_Amount(){
 
 	cout<<"Enter amount to withdraw :: ";
-	cin>>newAmount;
+	cin>>new_Amount;
 
-	file.open("C:/Placement_projects/bank-management-system/data.txt",ios::in);
-	file1.open("C:/Placement_projects/bank-management-system/data1.txt",ios::out|ios::app);
-	file>>accNo>>name>>Fname>>cnic>>P_no>>email>>amount;
+	file.open("data.txt",ios::in);
+	file1.open("newdata.txt",ios::out|ios::app);
+	file>>accNo>>name>>F_name>>cnic>>P_no>>email>>amount;
 
 	while(!file.eof()) {
 		if(accNo==search){
 			cout<<"\ncurrent amount :: "<<amount;
-			amount=amount - newAmount;
+			amount=amount - new_Amount;
 			cout<<"\nupdated amount :: "<<amount<<endl;
-			file1<<accNo<<"\t"<<name<<"\t"<<Fname<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
+			file1<<accNo<<"\t"<<name<<"\t"<<F_name<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
 		}else{
-			file1<<accNo<<"\t"<<name<<"\t"<<Fname<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
+			file1<<accNo<<"\t"<<name<<"\t"<<F_name<<"\t"<<cnic<<"\t"<<P_no<<"\t"<<email<<"\t"<<amount<<endl;
 		}
-		file>>accNo>>name>>Fname>>cnic>>P_no>>email>>amount;
+		file>>accNo>>name>>F_name>>cnic>>P_no>>email>>amount;
 	}
 
 	file.close();
 	file1.close();
-	remove("C:/Placement_projects/bank-management-system/data.txt");
-	rename("C:/Placement_projects/bank-management-system/data1.txt","data.txt");
+	remove("data.txt");
+	rename("newdata.txt","data.txt");
 }
 // Defination of checkInfo function
 void temp :: checkInfo(){
 
 
 	fstream file;
-	file.open("C:/Placement_projects/bank-management-system/data.txt",ios::in);
+	file.open("data.txt",ios::in);
 	if(!file){
 		cout<<"File opening error !";
 	}
-	file>>accNo>>name>>Fname>>cnic>>P_no>>email>>amount;
+	file>>accNo>>name>>F_name>>cnic>>P_no>>email>>amount;
 	while(!file.eof()){
 		if(accNo==search){
             cout<<"\n---------------------------\n";
@@ -128,7 +128,7 @@ void temp :: checkInfo(){
             cout<<"\t::: User Name      ::: ";
             cout<<"\t   "<<name<<"\n";
             cout<<"\t::: Father Name    ::: ";
-            cout<<"\t   "<<Fname<<"\n";
+            cout<<"\t   "<<F_name<<"\n";
             cout<<"\t::: CNIC number    ::: ";
             cout<<"\t   "<<cnic<<"\n";
             cout<<"\t::: Phone Number   ::: ";
@@ -140,7 +140,7 @@ void temp :: checkInfo(){
             cout<<"\n---------------------------\n\n";
 
 	    }
-		file>>accNo>>name>>Fname>>cnic>>P_no>>email>>amount;
+		file>>accNo>>name>>F_name>>cnic>>P_no>>email>>amount;
 	}
 
 	file.close();
@@ -178,13 +178,13 @@ int main(){
             switch (choice)
             {
             case '1':
-                obj.depositAmount();
+                obj.deposit_Amount();
             break;
             case '2':
-                obj.withdrawAmount();
+                obj.withdraw_Amount();
             break;
             case '3':
-                obj.checkInfo();
+                obj.check_Info();
             break;
             case '0':
                 return 0;
@@ -198,7 +198,7 @@ int main(){
         }
         break;
         case '2':
-            obj.createAccount();
+            obj.create_Account();
         break;
         case '0':
             system("exit");
